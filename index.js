@@ -11,12 +11,12 @@ availableModules = [{
     enabled: false
   },
   {
-    name: "notcrap",
+    name: "propulsion",
     essential: true,
     enabled: false
   },
   {
-    name: "kindacrap",
+    name: "life-support",
     essential: true,
     enabled: false
   },
@@ -44,29 +44,20 @@ function loadModule(index) {
   ship.modules.push(availableModules[index])
 }
 
-function loadLifeSupport() {
-  function isLifeSupport(element) {
-    return element.name == "life-support";
-  }
-
-  index = availableModules.findIndex(isLifeSupport);
-  loadModule(index);
-}
-
-loadLifeSupport();
-
 function findModuleIndex(name) {
-  function find_name(element) {
-    return element.name == name && element.essential;
+  for (let index = 0; index < availableModules.length; index++) {
+    current = availableModules[index]
+    console.log(current)
+    if (current.name == name && current.essential == true) {
+      return index;
+    }
   }
-
-  availableModules.findIndex(find_name);
 }
 
-propulsionIndex = findModuleIndex("propulsion");
-loadModule(propulsionIndex);
+loadModule(findModuleIndex("life-support"))
+loadModule(findModuleIndex("propulsion"))
 
-
+// Everything above here is for Lighthouse
 // HERE COMES THE TESTS
 
 // Look Ma! Minitest!
@@ -85,8 +76,10 @@ test(2, countModules() == 3)
 test(3, countEssential() == 2)
 
 // Challenge 4
+before = ship.modules.length;
 loadModule(2);
-test(4, ship.modules.length == 1)
+after = ship.modules.length;
+test(4, after - before == 1)
 
 // Challenge 5
 test(5, ship.modules.length == 2)
