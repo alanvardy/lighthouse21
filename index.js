@@ -6,8 +6,8 @@ var ship = {
   modules: []
 }
 availableModules = [{
-    name: "crap",
-    essential: false,
+    name: "navigation",
+    essential: true,
     enabled: false
   },
   {
@@ -18,6 +18,16 @@ availableModules = [{
   {
     name: "life-support",
     essential: true,
+    enabled: false
+  },
+  {
+    name: "life-support",
+    essential: false,
+    enabled: false
+  },
+  {
+    name: "nothing special",
+    essential: false,
     enabled: false
   },
 ];
@@ -70,10 +80,10 @@ powerOn();
 test(1, ship.powerOn == true)
 
 // Challenge 2
-test(2, countModules() == 3)
+test(2, countModules() == 5)
 
 // Challenge 3
-test(3, countEssential() == 2)
+test(3, countEssential() == 3)
 
 // Challenge 4
 before = ship.modules.length;
@@ -82,4 +92,4 @@ after = ship.modules.length;
 test(4, after - before == 1)
 
 // Challenge 5
-test(5, ship.modules.length == 2)
+test(5, ship.modules.length == 3)
