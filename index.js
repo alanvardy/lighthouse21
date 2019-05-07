@@ -66,9 +66,10 @@ function findModuleIndex(name) {
 
 loadModule(findModuleIndex("life-support"))
 loadModule(findModuleIndex("propulsion"))
+loadModule(findModuleIndex("navigation"))
 
 // Everything above here is for Lighthouse
-// HERE COMES THE TESTS
+// ------------------------- HERE COMES THE TESTS -------------------------
 
 // Look Ma! Minitest!
 function test(challenge, statement) {
@@ -92,4 +93,9 @@ after = ship.modules.length;
 test(4, after - before == 1)
 
 // Challenge 5
-test(5, ship.modules.length == 3)
+var hasPropulsion = function (element) {return element.name == "propulsion"}
+test(5, ship.modules.some(hasPropulsion))
+
+// Challenge 6
+var hasNavigation = function (element) {return element.name == "navigation"}
+test(6, ship.modules.some(hasNavigation))
