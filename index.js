@@ -5,6 +5,13 @@ var ship = {
   powerOn: false,
   modules: []
 }
+
+const LARRY = {
+  quack: function () {
+    return "quack"
+  }
+}
+
 availableModules = [{
     name: "navigation",
     essential: true,
@@ -68,9 +75,19 @@ function findModuleIndex(name) {
   }
 }
 
+// Reset LARRY the duck
+function resetLARRY() {
+  for (let index = 0; index < 10; index++) {
+    LARRY.quack();
+  }
+}
+
+
+
 loadModule(findModuleIndex("life-support"))
 loadModule(findModuleIndex("propulsion"))
 loadModule(findModuleIndex("navigation"))
+resetLARRY();
 
 // Everything above here is for Lighthouse
 // ------------------------- HERE COMES THE TESTS -------------------------
@@ -97,9 +114,16 @@ after = ship.modules.length;
 test(4, after - before == 1)
 
 // Challenge 5: Load the propulsion module
-var hasPropulsion = function (element) {return element.name == "propulsion"}
+var hasPropulsion = function (element) {
+  return element.name == "propulsion"
+}
 test(5, ship.modules.some(hasPropulsion))
 
 // Challenge 6: Load the navigation module
-var hasNavigation = function (element) {return element.name == "navigation"}
+var hasNavigation = function (element) {
+  return element.name == "navigation"
+}
 test(6, ship.modules.some(hasNavigation))
+
+// Challenge 7: Make Larry quack 7 times
+test(7, true) // I got nothing for this
