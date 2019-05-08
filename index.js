@@ -28,6 +28,11 @@ availableModules = [{
     enabled: false
   },
   {
+    name: "communication",
+    essential: true,
+    enabled: false
+  },
+  {
     name: "life-support",
     essential: false,
     enabled: false
@@ -84,10 +89,11 @@ function resetLARRY() {
 
 
 
-loadModule(findModuleIndex("life-support"))
-loadModule(findModuleIndex("propulsion"))
-loadModule(findModuleIndex("navigation"))
+loadModule(findModuleIndex("life-support"));
+loadModule(findModuleIndex("propulsion"));
+loadModule(findModuleIndex("navigation"));
 resetLARRY();
+loadModule(findModuleIndex("communication"));
 
 // Everything above here is for Lighthouse
 // ------------------------- HERE COMES THE TESTS -------------------------
@@ -102,10 +108,10 @@ powerOn();
 test(1, ship.powerOn == true)
 
 // Challenge 2: Find number of modules
-test(2, countModules() == 5)
+test(2, countModules() == 6)
 
 // Challenge 3: FInd number of essential modules
-test(3, countEssential() == 3)
+test(3, countEssential() == 4)
 
 // Challenge 4: Be able to load modules, load life-support
 before = ship.modules.length;
